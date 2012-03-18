@@ -1,0 +1,36 @@
+v 0.8.0 Nov 18 2009:
+	Rev [99]
+	First stable version.
+	Cross-licensing GPL v2/GPL v3.
+	Improvement of STDOUT writings.
+	Command-line tool for cluster's data browsing added.
+
+v 0.7.1 Oct 19 2009:
+	Rev [94]
+	Init script improvement.
+	Install documentation improvement.
+
+v 0.7.0 Oct 15 2009:
+	Rev [90]
+	HELO command added.
+	New standalone daemon (no more Xinetd super-daemon needed).
+	Replication improvement.
+	Init scripts improvement.
+
+v 0.5.0 Sep 15 2009:
+	Rev [73]
+	Several debugs.
+	Data consistency by using temporary files.
+	Better management of empty files.
+	Management of offline peers.
+	Improvement of "rename" function.
+
+v 0.3.0 Jul 30 2009:
+	Rev [51]
+	Regular bugs fixed.
+
+v 0.1.0 Jul 24 2009:
+	First unstable version, released for testing purpose.
+
+Project started Jul 21 2009
+

@@ -1,0 +1,53 @@
+=FineFS=
+FineFS is a simple network replicated filesystem, designed for web
+applications running on a cluster of tens of servers.
+
+* More information: http://finefs.googlecode.com
+* Discussions: http://groups.google.com/group/finemedia-oss
+
+==License==
+FineFS is published by the FineMedia company.
+
+It is placed under the terms of the [[http://www.gnu.org/licenses/gpl.html|GNU General Public License]].
+FineFS is cross-licensed on GPLv2 and GPLv3.
+
+All files are provided "AS IS", there is no warranty.
+
+Copyright (c) 2009, FineMedia
+
+
+==Installation==
+* Default installation directory: /opt/finemedia
+* Default user: www-data
+
+Create the base directory
+{{{
+mkdir /opt/finemedia
+}}}
+
+Checkout all files from Git
+{{{
+git clone git://github.com:Amaury/FineFS /opt/finemedia/finefs
+}}}
+
+Give access rights
+{{{
+chmod -R 777 /opt/finemedia/finefs/log
+chown -R www-data /opt/finemedia/finefs/bin /opt/finemedia/finefs/var
+}}}
+
+Edit the file "/opt/finemedia/finefs/etc/finefs.ini"
+* Set the local server name (if the local machine is an active node).
+* Set the names of the other cluster nodes.
+
+Setup the FineFS daemon
+* create a symlink: `ln -s /opt/finemedia/finefs/etc/finefs.rc /etc/init.d/finefs`
+* configure startup
+** on Debian-like systems: `update-rc.d finefs defaults`
+** on RedHat-like systems: `chkconfig --add finefs`
+* start it: `/etc/init.d/finefs start`
+
+Add the replication program to crontab
+* copy the configuration file: `cp /opt/finemedia/finefs/etc/finefs.cron /etc/cron.d/finefs`
+* restart cron: `/etc/init.d/cron restart`
+

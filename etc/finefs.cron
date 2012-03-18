@@ -1,0 +1,6 @@
+# Crontab entry for FineFS replication process.
+# You may have to change the script owner and script path (see documentation).
+
+# m h dom mon dow	user		command
+* *    *   *   *	www-data	/opt/finemedia/finefs/bin/exec.FineFSReplication.php
+

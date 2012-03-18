@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+### BEGIN INIT INFO
+# Provides:          finefs
+# Required-Start:    $local_fs $remote_fs $network
+# Required-Stop:     $local_fs $remote_fs $network
+# Should-Start:      $named
+# Should-Stop:       $named
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start and stop the FineFS server daemon
+# Description:       Start and stop the FineFS server daemon.
+### END INIT INFO
+
+# FineFS daemon's owner ('www-data' by default)
+FINEFS_USER=www-data
+# FineFS bin directory
+FINEFS_BIN=/opt/finemedia/finefs/bin
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+case "$1" in
+  start)
+	sudo -u $FINEFS_USER $FINEFS_BIN/exec.FineFSDaemon.php
+	;;
+  restart|reload|force-reload)
+	kill -s TERM `more $FINEFS_BIN/exec.FineFSDaemon.php.lck`
+	sudo -u $FINEFS_USER $FINEFS_BIN/exec.FineFSDaemon.php
+	;;
+  stop)
+	kill -s TERM `more $FINEFS_BIN/exec.FineFSDaemon.php.lck`
+	;;
+  *)
+	echo "Usage: $0 start|stop|restart" >&2
+	exit 3
+	;;
+esac
+
