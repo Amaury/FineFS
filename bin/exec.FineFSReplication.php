@@ -4,6 +4,7 @@
 $fineFSroot = dirname(__FILE__) . "/..";
 
 require_once("$fineFSroot/lib/php/utils/except.ApplicationException.php");
+require_once("$fineFSroot/lib/php/utils/except.IOException.php");
 require_once("$fineFSroot/lib/php/utils/class.FineLog.php");
 require_once("$fineFSroot/lib/php/utils/class.FineLock.php");
 require_once("$fineFSroot/lib/php/class.FineFSManager.php");
@@ -18,10 +19,16 @@ require_once("$fineFSroot/lib/php/class.FineFSManager.php");
  * @version	$Id$
  */
 
-// lock and processing
+// lock
 $lock = new FineLock();
 try {
 	$lock->lock();
+} catch (IOException $e) {
+	// unable to lock
+	exit(0);
+}
+// processing
+try {
 	// read configuration
 	$conf = FineFSManager::readConfiguration();
 	// log definition
